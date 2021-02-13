@@ -48,8 +48,10 @@ function DrumButton({buttonId, audioSrc, instrument, onButtonClick}) {
     };
   }, []);
   function handleClick(){
-    document.getElementById(buttonId).play()
-    onButtonClick(instrument)
+    const sound = document.getElementById(buttonId);
+    sound.currentTime = 0;
+    sound.play();
+    onButtonClick(instrument);
   }
   return (
     <Button id={`drum${buttonId}`} variant="contained" className='drum-pad' size="large" onClick={handleClick}>{buttonId}<audio src={audioSrc} className='clip' id={buttonId}></audio></Button>
